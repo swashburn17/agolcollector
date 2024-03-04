@@ -25,7 +25,7 @@
 
    <!-- loading the modules -->
    <script>
-    require(["esri/config", "esri/Map", "esri/views/MapView" ], (esriConfig, Map, MapView) => {
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search" ], (esriConfig, Map, MapView, Locate, Search) => {
 
         // Adding Esri API KEY
         esriConfig.apiKey = "AAPK1765fcbd73fc4425b0cd59bdc8917e2bmcTlBpvn58EXkohap6CpN2AW0fqzLT6uVWDm397RXqEqWOhZxic16ypSWD1WQhY_";
@@ -41,7 +41,24 @@
                 center: [-82.3248300, 29.6516300] // Gainesville, Florida
         });
 
+        const locateBtn = new Locate({
+          view: view
+        });
 
+        // Add the locate widget to the top left corner of the view
+        view.ui.add(locateBtn, {
+          position: "top-left"
+        });
+
+        const searchWidget = new Search({
+            view: view
+        });
+        // Adds the search widget below other elements in
+        // the top left corner of the view
+        view.ui.add(searchWidget, {
+            position: "top-left",
+            index: 2
+        });
 
      });
     </script>
